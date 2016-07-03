@@ -1,0 +1,30 @@
+{
+  "name": "nairamarket",
+  "description": "Nigerian online market",
+  "main": "index.js",
+  "authors": [
+    "nuruddeensalihu <nuruddeensalihu@yahoo.com>"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "Nigerian",
+    "buying",
+    "and",
+    "selling"
+  ],
+  "moduleType": [],
+  "homepage": "",
+  "private": true,
+  "devDependencies": {
+    "angular": "~1.5.0",
+    "angular-route": "~1.5.0",
+    "jquery": "~2.2.0",
+    "toastr": "~2.1.2",
+    "angular-resource": "~1.5.0",
+    "angular-messages": "^1.5.5"
+  },
+  "dependencies": {
+    "bluebird": "~3.2.2",
+    "ng-file-upload": "^12.0.4"
+  }
+}

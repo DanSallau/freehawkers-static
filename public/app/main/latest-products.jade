@@ -1,0 +1,31 @@
+<!--latest products-->
+div(class="latest-products spacer")
+    div(class="container")
+        h2 Latest Products
+        data-owl-carousel(class="owl-carousel")
+            div(owl-carousel-item="",class="product",ng-repeat="product in Ads | filter : featured : true | limitTo: 8")
+                a(href="#")
+                    img(src="{{product.AdItems[0].ImageUrl}}",class="img-responsive carousel-img")
+                h4
+                    a(href="/ad/{{product.id}}") {{product.Title}}
+                div(class="details")
+                    span
+                        b Price
+                        | {{product.Currency}}. {{product.SellingPrice}}
+                    span
+                        b Condition
+                        | {{product.Condition}}
+                    span
+                        b Price Negotiable
+                        | {{product.Negotiable}}
+                    span
+                        b Market Price
+                        | {{product.Currency}}. {{product.MarketPrice}}
+                    span
+                        b Contact
+                        | {{product.User.Contact}}
+
+                a(class="btn btn-warning",href="/ad/{{product.id}}") View Detail
+
+
+<!--latest products-->

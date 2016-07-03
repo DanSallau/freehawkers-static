@@ -1,0 +1,30 @@
+html, body, div{margin: 0;padding: 0;}
+			body{overflow: hidden;font:normal 13px/35px Arial;color: #333;}
+			#switcher {
+				background: #45484d; /* Old browsers */
+				background: -moz-linear-gradient(top,  #45484d 0%, #000000 100%); /* FF3.6+ */
+				background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#45484d), color-stop(100%,#000000)); /* Chrome,Safari4+ */
+				background: -webkit-linear-gradient(top,  #45484d 0%,#000000 100%); /* Chrome10+,Safari5.1+ */
+				background: -o-linear-gradient(top,  #45484d 0%,#000000 100%); /* Opera 11.10+ */
+				background: -ms-linear-gradient(top,  #45484d 0%,#000000 100%); /* IE10+ */
+				background: linear-gradient(to bottom,  #45484d 0%,#000000 100%); /* W3C */
+				filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#45484d', endColorstr='#000000',GradientType=0 ); /* IE6-9 */
+				z-index: 99999;	position: fixed;width: 100%;top: 0;border-bottom: 1px solid #10abc7;}
+			a{color: #fff;text-decoration: none;}
+			a.logo{float: left;margin-left:50px;background-color: #10abc7;padding:0 10px; }
+			#responsive{float: left;margin: 0;padding: 0;}
+			#responsive li{display: inline-block;padding:0 10px;}
+			#responsive li:hover{background-color: #000;}
+			#responsive li i{margin-right:5px;font-size: 15px;} 
+			#controls{float: right;margin-right:50px;background-color: #DC0869;padding:0 10px; }
+
+				.ads{position: fixed; top: 60px;right: 40px;z-index: 1000;}	
+			a.download{  position: absolute;padding: 0 20px;  background-color: #669E33;  left: 47%;}
+
+			#iframe {
+			margin: auto;
+			position: absolute;
+			top: 23px; bottom: 0; left: 0; right: 0;
+			width: 100%;
+			display: block !important;
+			border:none;}

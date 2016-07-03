@@ -1,0 +1,118 @@
+.container(ng-controller="nmProfileCtrl")
+    div(class="spacer inside-page")
+        h2(class="title") Edit Profile
+        form(class="login-register-box", name="profileFrm" novalidate ng-submit="profileFrm.$valid && updateProfile()")
+            div(class="row")
+                div(class="col-sm-6 col-xs-7 col-sm-offset-5")
+                    div(ngf-drop="onFileSelect($files)", 
+                        class="drop-box", ng-hide="formData.profilePic" 
+                        ngf-drag-over-class="'dragover'",ngf-select = "", 
+                        ngf-accept="'image/*'",
+                        ngf-resize="{width: 100, height: 100}"
+                        ng-model="formData.profilePic", ngf-change="onFileSelect($files)",
+                        ngf-multiple="false") Select Or Drop Image
+                    div(ngf-no-file-drop="") File Drag/Drop is not supported for this browser 
+                    div(ng-show="formData.profilePic") 
+                        img(ngf-thumbnail="{{'formData.profilePic'}}", class="thumb")
+                div(class="col-sm-1 col-xs-1")        
+                    div(ng-show="formData.profilePic")
+                        label(class="lblClose")
+                            a(href="#" ,ng-click="removeItem()",  ng-disabled="!formIsReady")
+                                i(class="fa fa-close")       
+                
+            div(class="form-group")
+                label(for="firstname") First Name
+                input(type="text", class="form-control", name="fname", placeholder="Your First Name", ng-model="formData.fname", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.fname.$error")
+                        div(ng-message="required") required  
+                        
+            div(class="form-group")
+                label(for="lastname") Last Name
+                input(type="text", class="form-control", name="lname", placeholder="Your Last Name", ng-model="formData.lname", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.lname.$error")
+                        div(ng-message="required") required  
+                        
+            div(class="form-group")
+                label(for="username") Username
+                input(type="text", class="form-control", name="username", placeholder="Your User Name", ng-model="formData.username", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.username.$error")
+                        div(ng-message="required") required  
+            div(class="form-group")
+                label(for="username") Show users my email
+                input(type="checkbox", class="form-control", name="showEmail", ng-model="formData.showEmail")             
+                        
+            div(class="form-group")
+                label(for="email") Email
+                input(type="email", class="form-control", name="email", placeholder="Your Email", ng-model="formData.email", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.email.$error")
+                        div(ng-message="required") Email is required
+                        div(ng-message="email") Please enter a valid email address
+                        
+            div(class="form-group")
+                label(for="contact") Contact
+                input(type="text", class="form-control", name="contact", placeholder="Phone", ng-model="formData.contact", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.Phone.$error")
+                        div(ng-message="required") required 
+                        
+            div(class="form-group")
+                label(for="address") address
+                textarea(rows="4", class="form-control", name="address", placeholder="Address", ng-model="formData.address", required)
+                div(class="text-danger")
+                    div(ng-messages="profileFrm.address.$error")
+                        div(ng-message="required") required 
+                        
+            .spacer    
+                
+                div(class="panel panel-default")
+                    div(class="panel-heading")
+                        div(class="checkbox")
+                            label
+                                input(type="checkbox",ng-model="formData.changePassword")
+                                |Change Password
+                    div(class="panel-body")            
+                        div(class="form-group")
+                            label(for="currentPassword") Current Password
+                            input(type="password", class="form-control", name="currentpassword", placeholder="Current Password", ng-model="formData.currentPassword", ng-disabled="!formData.changePassword")
+                    
+                        div(class="form-group")
+                            label(for="password") New Password
+                            input(type="password", 
+                                  class="form-control", 
+                                  name="password", 
+                                  placeholder="Your Password", 
+                                  ng-model="formData.newPassword",  
+                                  ng-disabled="!formData.changePassword",
+                                  ng-maxlength="16"
+                                  ng-minlength="6"
+                                  )
+                            div(class="text-danger")
+                                div(ng-messages="profileFrm.password.$error")
+                                    div(ng-message="minlength") Message must be over 6 characters
+                                    div(ng-message="maxlength") Message must not exceed 16 characters  
+                                         
+                        div(class="form-group")
+                            label(for="repassword") Confirm Password
+                            input(type="password", 
+                                  class="form-control", 
+                                  name="repassword", 
+                                  placeholder="Confirm Password", 
+                                  ng-model="formData.rePassword",  
+                                  ng-disabled="!formData.changePassword",
+                                  compare-to="formData.newPassword")
+                        div(class="text-danger")
+                            div(ng-messages="profileFrm.repassword.$error") 
+                                div(ng-message="compareTo") Password do not match! 
+                                div(ng-message="required") required      
+                            
+                            
+                            
+            .pull-right
+                button(type="submit", class="btn btn-warning",ng-disabled="!profileFrm.$valid || !formIsReady") Update Account
+                | &nbsp;
+                a.btn.btn-danger(href="/") Cancel
+                {{uploadProgress}}

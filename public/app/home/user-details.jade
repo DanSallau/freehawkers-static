@@ -1,0 +1,55 @@
+.row
+    div(class="col-sm-3 col-sm-offset-1")
+        div(class="panel panel-default")
+            div(class="panel-body centered-text")    
+                img(ngf-thumbnail="{{'User.ProfilePicture'}}", class="profile-picture")  
+                               
+
+            div(class="panel-footer") 
+                a(href="/profile", class="btn btn-default") Change       
+    div(class="col-sm-7 col-sm-offset-0")
+        div(class="panel panel-default")
+            div(class="panel-heading") 
+                h4 My profile
+            div(class="panel-body")
+                .table-responsive    
+                    table(class="table")
+                        tbody
+                            tr
+                                td 
+                                    b Name
+                                td {{User.FirstName + ' ' + User.LastName }}
+                                td 
+                                    b Last Active:
+                                td   
+                                    div(ng-if="User.LastActive") {{User.LastActive |date : "medium"  }}
+                                    div(ng-if="!User.LastActive") Today
+                            tr
+                                td 
+                                    b Email
+                                td {{User.Show_Contact ? User.Email : 'xxxxxxx' }}
+                                td 
+                                    b Account Created:
+                                td  
+                                    {{User.CreatedOn | date}}
+                            tr
+                                td 
+                                    b Address
+                                td {{User.Address }}
+                                td
+                                    b Total Ads: 
+                                td  {{classifiedList.length}}
+                            
+                div(class="alert alert-danger", ng-show="!User.Active")
+                    strong
+                        Danger! 
+                            |Please go to your email to activate your account before you can post ad. 
+                
+                div(class="alert alert-danger", ng-show="!User.Contact")
+                    strong
+                        Danger! 
+                            |Please update your account 
+                    a(href="/profile") here before you can post an ad.    
+            div(class="panel-footer")    
+                a(href="/profile", class="btn btn-default") Edit                 
+                                            

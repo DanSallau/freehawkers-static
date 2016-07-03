@@ -1,0 +1,60 @@
+.container(ng-controller="nmRegisterCtrl")
+    div(class="spacer inside-page")
+        h2(class="title") Register/Signup
+        form(class="login-register-box", name="signupFrm" novalidate ng-submit="signupFrm.$valid && signup()")
+            div(class="form-group")
+                label(for="firstname") First Name
+                input(type="text", class="form-control", name="fname", placeholder="Your First Name", ng-model="formData.fname" required)
+                div(class="text-danger")
+                    div(ng-messages="signupFrm.fname.$error")
+                        div(ng-message="required") required   
+            div(class="form-group")
+                label(for="lastname") Last Name
+                input(type="text", class="form-control", name="lname", placeholder="Your Last Name", ng-model="formData.lname" required)
+                div(class="text-danger")
+                    div(ng-messages="signupFrm.lname.$error")
+                        div(ng-message="required") required
+            div(class="form-group")
+                label(for="username") Username
+                input(type="text", class="form-control", name="username", placeholder="Your User Name", ng-model="formData.username" required)
+                div(class="text-danger")
+                    div(ng-messages="signupFrm.username.$error")
+                        div(ng-message="required") required
+            div(class="form-group")
+                label(for="email") Email
+                input(type="email", class="form-control", name="email", placeholder="Your Email", ng-model="formData.email" required)
+                div(class="text-danger")
+                    div(ng-messages="signupFrm.email.$error")
+                        div(ng-message="required") Email is required
+                        div(ng-message="email") Please enter a valid email address    
+            .spacer
+                div(class="form-group")
+                    label(for="password") Password
+                    input(
+                        type="password", 
+                        class="form-control", 
+                        name="password",
+                        placeholder="Your Password", 
+                        ng-maxlength="16"
+                        ng-minlength="6"
+                        ng-model="formData.password" required)
+                    div(class="text-danger")
+                        div(ng-messages="signupFrm.password.$error")
+                            div(ng-message="minlength") Message must be over 6 characters
+                            div(ng-message="maxlength") Message must not exceed 16 characters    
+                div(class="form-group")
+                    label(for="repassword") Confirm Password
+                    input(
+                        type="password", 
+                        class="form-control", 
+                        name="repassword",
+                        placeholder="Confirm Password", 
+                        ng-model="formData.repassword" compare-to="formData.password" required)
+                    div(class="text-danger")
+                        div(ng-messages="signupFrm.repassword.$error") 
+                            div(ng-message="compareTo") Password do not match!
+                        
+            .pull-right
+                button(type="submit", class="btn btn-warning", ng-disabled="!signupFrm.$valid") Create an Account
+                | &nbsp;
+                a.btn.btn-danger(href="/") Cancel

@@ -1,0 +1,7 @@
+div(class="container")
+    <!--ads-->
+    div(class="row spacer ads")
+        div(class="col-sm-4",ng-repeat="ad in sponsoredAds")
+            a(href="{{ad.RedirectUrl}}", target="_blank")
+                img(src="{{ad.AdsUrl}}" class="img-responsive")
+

@@ -1,0 +1,154 @@
+div(class="container", ng-controller="nmPostAdCtrl")
+    div(class="spacer inside-page")
+        h2(class="title") Post an Ads
+        div(class="login-register-box")
+            form(class="form-horizontal" name="postAdFrm" novalidate ng-submit="postAdFrm.$valid && submitAd()")
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Product Title
+                    div(class="col-sm-8")
+                        input(type="text", class="form-control", name="productTitle", placeholder="Product Title", ng-model="formData.productTitle" required)
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.productTitle.$error")
+                                div(ng-message="required") required    
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Market Price
+                    div(class="col-sm-8")
+                        input(type="number", class="form-control",name="marketPrice", placeholder="Market Price", ng-model="formData.marketPrice", min="1" max="99999999")
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.marketPrice.$error")
+                                div(ng-message="required") required   
+                                 
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Selling Price
+                    div(class="col-sm-8")
+                        input(type="number", class="form-control", name="sellingPrice" , placeholder="Selling Price", ng-model="formData.sellingPrice", min="1" max="99999999" required)
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.sellingPrice.$error")
+                                div(ng-message="required") required 
+                                    
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Negotiable
+                    div(class="col-sm-8")
+                        select(class="form-control", name="priceNegotiable", ng-model="formData.priceNegotiable" required)
+                            option Yes
+                            option No
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.priceNegotiable.$error")
+                                div(ng-message="required") required         
+                
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") State
+                    div(class="col-sm-8")
+                        select(class="form-control",
+                               name="state", 
+                               ng-model="formData.state",
+                               ng-options="state.State as state.State for state in states"
+                               required)
+          
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.state.$error")
+                                div(ng-message="required") required         
+                
+                
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Category
+                    div(class="col-sm-4")
+                        select(class="form-control", 
+                                name="category", 
+                                ng-model="formData.category" 
+                                ng-change="categoryChange(formData.category)"
+                                required 
+                                ng-options="category.id as category.Name for category in categoriesOptions")
+                    div(class="col-sm-4")
+                        select(class="form-control", 
+                                name="categoryItem", 
+                                ng-model="formData.categoryItem"
+                                required 
+                                ng-options="item.id as item.Item for item in categoryItems")            
+
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.categoryItem.$error")
+                                div(ng-message="required") required         
+                
+                                
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Condition
+                    div(class="col-sm-8")
+                        div(class="checkbox")
+                            label.radio-inline
+                                input(type="radio", name="itemCondition", ng-model="formData.itemCondition", value="New" required)
+                                |New
+                            label.radio-inline
+                                input(type="radio", name="itemCondition" ,ng-model="formData.itemCondition", value="Used" required)
+                                |Used
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.itemCondition.$error")
+                                div(ng-message="required") required         
+                                
+                div(class="form-group")
+                    label(class="col-sm-3 control-label") Description
+                    div(class="col-sm-8")
+                        textarea(class="form-control", name="adDescription" ,rows="3", ng-model="formData.adDescription", placeholder="Product introduction" required)
+                    div(class="col-sm-1")    
+                        div(class="text-danger")
+                            div(ng-messages="postAdFrm.adDescription.$error")
+                                div(ng-message="required") required    
+                                    
+                div("class=form-group")
+                    .row
+                        div(class="col-sm-3")
+                        
+                        div(class="col-sm-9")
+                            <!--input(type="file", ngf-select = "", ng-model="formData.files", ngf-change="onFileSelect($files)")--> 
+                            
+                            .panel-heading
+                                h3(class="panel-title") Panel title
+                            
+                            .row(ng-repeat="n in getArray(number)")
+                                div(class="col-sm-9 col-xs-9")               
+                                    textarea(class="form-control", rows="3", ng-model="formData.imageDesc[n]", placeholder="Image Description-{{n}}")    
+                                div(class="col-sm-2 col-xs-2")
+                                    div(ngf-drop="onFileSelect($files)", class="drop-box", ng-hide="formData.imageLink[n]" 
+                                        ngf-drag-over-class="'dragover'",ngf-select = "", 
+                                        ngf-accept="'image/*'",
+                                        ngf-min-height="400" 
+                                        ngf-min-width="600" 
+                                        ngf-resize="{width: 100, height: 100}"
+                                        ng-model="formData.imageLink[n]", ngf-change="onFileSelect($files)",
+                                        ngf-multiple="false") Select Or Drop Image 600 X 400
+                                    div(ngf-no-file-drop="") File Drag/Drop is not supported for this browser 
+                                    div(ng-show="formData.imageLink[n]") 
+                                        img(ngf-thumbnail="{{'formData.imageLink[n]'}}", class="thumb")
+                                div(class="col-sm-1 col-xs-1")
+                                    div(ng-show="formData.imageLink[n]")
+                                        label(class="lblClose")
+                                            a(href="#" ,ng-click="removeItem(n)",  ng-disabled="!formIsReady")
+                                                i(class="fa fa-close")        
+                                            
+                            hr  
+                    .row
+                        div(class="form-group")
+                            div(class="col-sm-offset-10 col-sm-2")            
+                                input(type="submit", class="btn btn-danger", value="Add Item", ng-click="addItem()",  ng-disabled="!formIsReady")  
+                            hr                                              
+                div(class="form-group")
+                    div(class="col-sm-offset-3 col-sm-9")        
+                        input(type="submit", class="btn btn-warning", value="Post an Ads" ng-disabled="!postAdFrm.$valid || !formIsReady || !formData.imageLink[number] || !formData.imageDesc[number]")
+                        {{uploadProgress}}
+                       //
+                        ul
+                            li(ng-repeat="(key, errors) in postAdFrm.$error track by $index") 
+                                strong {{ key }} errors
+                                ul
+                                    li(ng-repeat="e in errors")
+                                        {{ e.$name }} has an error: 
+                                        strong {{ key }}
+                        
+

@@ -1,0 +1,22 @@
+.container(ng-controller="nmUserListCtrl")
+    div(class="spacer inside-page")
+        .row    
+            div(class="col-sm-11 col-sm-offset-1")
+                div(class="panel panel-default")
+                    div(class="panel-heading") 
+                        h4 users
+                    div(class="panel-body")
+                        table.table
+                            thead
+                                tr
+                                    th Name 
+                                    th Picture
+                                    th Block
+                            tbody        
+                                tr(ng-repeat="user in users")
+                                    td {{user.FirstName  + ' ' + user.LastName}}
+                                    td 
+                                        img(ngf-thumbnail="{{'user.ProfilePicture'}}", class="profile-picture")  
+                                    td
+                                        input(type="checkbox", name="block", ng-model="formData.block", ng-checked="user.Block", ng-click="blockUser($event, user)")
+                    div(class="panel-footer")            

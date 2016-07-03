@@ -1,0 +1,38 @@
+div(class="container",ng-controller="nmLoginCtrl")
+
+    div(class="spacer inside-page")
+        h2(class="title") Login/Register
+        div(class="row login-register-box")
+            div(class="col-sm-6")
+                form(name="loginFrm" novalidate ng-submit="loginFrm.$valid && signin()")
+                    h3 Sign In
+                    div(class="form-group")
+                        label(for="username") Username
+                        input(type="text"
+                        class="form-control"
+                        name="txtUsername"
+                        ng-model="formData.username" required
+                        placeholder="Enter email or username")
+                   
+                    div(class="form-group")
+                        label(for="password") Password
+                        input(type="password"
+                        class="form-control"
+                        id="txtpassword"
+                        ng-model="formData.password" required
+                        placeholder="Password")
+
+                    div(class="checkbox")
+                        label
+                            input(type="checkbox",ng-model="formData.chkboxRemember")
+                            |Remeber password
+
+                    button(type="submit", class="btn btn-warning") Submit
+                    a(href="/forgot-password", class="btn btn-danger pull-right") Forgot Password
+
+            div(class="col-sm-6")
+                h3 Create an Account
+                p
+                    |I would like to create a new account. It's free and easy. Kindly fill up the form you would be presented with to get started.
+                    
+                a(href="/register", class="btn btn-warning") Create an Account

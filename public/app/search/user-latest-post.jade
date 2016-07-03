@@ -1,0 +1,37 @@
+.row    
+    div(class="col-sm-10 col-sm-offset-1")
+                    div(class="panel panel-default")
+                        div(class="panel-heading") 
+                            h4 My Ads
+                        div(class="panel-body")
+                            p   Below are the ads by {{User.FirstName + ' ' + User.LastName}}  
+                                
+                                
+                            .table-responsive    
+                                table(class="table")
+                                    thead
+                                        tr
+                                            th 
+                                            th Title
+                                            th By
+                                            th Price
+                                            th Date
+                                            th View
+                                    tbody
+                                        tr(href="#", ng-repeat="classified in classifiedList | orderBy :'CreatedOn': true", style="margin:auto;")
+                                            td(class="hidden-xs")
+                                                a(href="#")
+                                                    img(src="{{classified.AdItems[0].ImageUrl}}", class="img-responsive thumb")
+                                            td 
+                                                h5
+                                                    a(href="/ad/{{classified.id}}")  {{classified.Title}}
+                                            td {{classified.User.FirstName + ' ' + classified.User.LastName}}        
+                                            td {{classified.currency}} {{classified.SellingPrice}}
+                                            
+                                            td {{classified.CreatedOn | date}}
+                                            
+                                            td
+                                                span.text-right
+                                                    a(href="/ad/{{classified.id}}", class="btn btn-default") View Details                                
+                        div(class="panel-footer") 
+                            
